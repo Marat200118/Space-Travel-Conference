@@ -1,19 +1,42 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import fetchApi from "../lib/strapi.js";
+
+
+const talks = await fetchApi({
+  endpoint: "talks",
+  wrappedByKey: "data",
+  // Consider adding a query to limit the number of talks or to include necessary relations
+});
 ---
 
 <BaseLayout>
-	<section class="about">
+  <section class="about">
     <h2>Welcome to STC 2024:<br> The Future of Space Travel Awaits!</h2>
     <p>Our space travel conference will take place on January 21-22, 2024,<br> Join Us in Paris and New York</p>
   </section>
   <section class="talks-highlights">
     <h2>Talks Highlights</h2>
-    <!-- Content -->
+    {talks.length > 0 ? (
+      <ul class="talks-list">
+        {talks.map((talk) => (
+          <li key={talk.id}>
+            <div class="talk">
+              <h3>{talk.attributes.Name}</h3>
+              <p>{talk.attributes.Description}</p>
+              <p>Time: {talk.attributes.Time}</p>
+              <!-- Adjust based on your data structure -->
+            </div>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>No talks to display at the moment.</p>
+    )}
   </section>
   <section class="speakers-highlights">
     <h2>Speakers Highlights</h2>
-    <!-- Content -->
+    <!-- Additional content -->
   </section>
 </BaseLayout>
 
@@ -46,4 +69,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		background-repeat: none;
 		background-size: 100%;
 	}
+
+	.talks-highlights {
+		background-color: var(--color-secondary);
+		color: var(--color-primary);
+		padding: 2rem;
+	}
+
+	.talks-list {
+		display: flex;
+  }
+	
 </style>
