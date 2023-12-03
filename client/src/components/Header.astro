@@ -1,0 +1,45 @@
+---
+// Menu.astro
+---
+
+<nav class="menu">
+  <ul class="menu-list">
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/schedule">Schedule</a></li>
+    <li><a href="/speakers">Speakers</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+</nav>
+
+<style>
+  .menu {
+    background-color: var(--color-secondary);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .menu-list li {
+    display: inline;
+  }
+
+  .menu-list a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 400;
+  }
+
+  .menu-list a:hover {
+    color: #000;
+  }
+
+</style>

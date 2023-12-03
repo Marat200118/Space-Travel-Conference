@@ -1,16 +1,49 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+	<section class="about">
+    <h2>Welcome to STC 2024:<br> The Future of Space Travel Awaits!</h2>
+    <p>Our space travel conference will take place on January 21-22, 2024,<br> Join Us in Paris and New York</p>
+  </section>
+  <section class="talks-highlights">
+    <h2>Talks Highlights</h2>
+    <!-- Content -->
+  </section>
+  <section class="speakers-highlights">
+    <h2>Speakers Highlights</h2>
+    <!-- Content -->
+  </section>
+</BaseLayout>
+
+<style>
+	.about, .talks-highlights, .speakers-highlights {
+    margin-bottom: 2rem;
+	}
+
+	.about h2, .talks-highlights h2, .speakers-highlights h2 {
+    font-size: var(--font-size-heading);
+	}
+
+	.about p, .talks-highlights p, .speakers-highlights p {
+    font-size: var(--font-size-paragraph);
+	}
+
+	.about h2, .about p {
+		color: var(--color-secondary);
+	}
+
+	.about {
+		text-align: center;
+		height: 100vh;
+		display: flex;
+		gap: 2rem;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-image: url('../assets/space-back.jpg');
+		background-repeat: none;
+		background-size: 100%;
+	}
+</style>
