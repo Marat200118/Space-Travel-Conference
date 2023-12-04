@@ -1,0 +1,94 @@
+---
+import fetchApi from "../lib/strapi.js";
+import { Image } from "astro:assets";
+
+const { talk } = Astro.props;
+---
+
+<div class="talk-item">
+  <div class={`talk ${talk.id % 2 === 0 ? 'even' : 'odd'}`}>
+    <div class="talk-image">
+      <!-- Image component can be placed here -->
+      <!-- <img src="../assets/talk-image.jpg" > -->
+    </div>
+    <div class="talk-info">
+      <h3>{talk.attributes.name}</h3>
+      <p class="time">Time: {talk.attributes.time}</p>
+      <p>{talk.attributes.description}</p>
+      <div class="button">
+        <a href={talk.attributes.link} target="_blank">Watch</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+
+  .talk-item {
+    display: flex;
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+  }
+
+  .talk.even  {
+    flex-direction: row-reverse;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .talk-info h3 {
+    margin-bottom: 1.5rem;
+  }
+
+  .talk-info p {
+    width: 50%;
+  }
+
+  .time {
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .button {
+    margin-top: 2rem;
+  }
+
+  .button a {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    padding: 1rem 3rem;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .button a:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    cursor: pointer;
+    border: 1px solid var(--color-primary);
+  }
+  
+
+
+</style>
+
+
+
+
+
+
+<!-- <Image
+            src={`${import.meta.env.STRAPI_URL}${
+            talk.attributes.image?.data.attributes.url
+          }`}
+          alt="Talk image"
+          width="300"
+          height="400"
+          widths={[250, 350, 500, 750]}
+          sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
+        /> -->

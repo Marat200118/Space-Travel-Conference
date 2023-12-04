@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import fetchApi from "../lib/strapi.js";
+import TalkHighlight from "../components/TalkHighlight.astro";
 
 
 const talks = await fetchApi({
@@ -20,13 +21,8 @@ const talks = await fetchApi({
     {talks.length > 0 ? (
       <ul class="talks-list">
         {talks.map((talk) => (
-          <li key={talk.id}>
-            <div class="talk">
-              <h3>{talk.attributes.Name}</h3>
-              <p>{talk.attributes.Description}</p>
-              <p>Time: {talk.attributes.Time}</p>
-              <!-- Adjust based on your data structure -->
-            </div>
+          <li key={talk.id} class="talk-item">
+            <TalkHighlight talk={talk} />
           </li>
         ))}
       </ul>
@@ -71,6 +67,8 @@ const talks = await fetchApi({
 	}
 
 	.talks-highlights {
+    display: flex;
+    flex-direction: column;
 		background-color: var(--color-secondary);
 		color: var(--color-primary);
 		padding: 2rem;
@@ -78,6 +76,7 @@ const talks = await fetchApi({
 
 	.talks-list {
 		display: flex;
+    flex-direction: column;
   }
 	
 </style>
