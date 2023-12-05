@@ -1,0 +1,27 @@
+---
+// src/pages/talks/[id].astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TalkHighlight from '../../components/TalkHighlight.astro';
+import fetchApi from '../../lib/strapi';
+
+export async function getStaticPaths() {
+  const talks = await fetchApi({
+    endpoint: "talks",
+    wrappedByKey: "data",
+    query: { populate: "*" },
+  });
+
+  // Generate a path for each talk
+  const paths = talks.map((talk) => ({
+    params: { id: talk.id.toString() },
+  }));
+
+  return paths;
+}
+
+const { talk } = Astro.props;
+---
+
+<BaseLayout>
+  <TalkHighlight talk={talk} />
+</BaseLayout>

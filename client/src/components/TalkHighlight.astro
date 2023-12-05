@@ -27,7 +27,7 @@ const { talk } = Astro.props;
     <p class="time">Time: {talk.attributes.time}</p>
     <p>{talk.attributes.description}</p>
     <div class="button">
-      <a href={talk.attributes.link} target="_blank">Watch</a>
+      <a href={`/talks/${talk.id}`}>See more</a>
     </div>
   </div>
 
