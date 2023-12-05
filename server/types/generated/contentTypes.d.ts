@@ -376,7 +376,7 @@ export interface ApiSpeakerSpeaker extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     description: Attribute.Text;
-    picture: Attribute.Media;
+    image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -415,7 +415,7 @@ export interface ApiTalkTalk extends Schema.CollectionType {
       'oneToOne',
       'api::speaker.speaker'
     >;
-    photo: Attribute.Media;
+    image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
