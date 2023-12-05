@@ -33,13 +33,20 @@ const { talk } = Astro.props;
 
 
 <style>
-  
+
   .talk-info h3 {
     margin-bottom: 1.5rem;
   }
 
-  .talk-info p {
+  /* .talk-info p {
     width: 50%;
+  } */
+
+  .talk-info {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .time {

@@ -10,6 +10,8 @@ const talks = await fetchApi({
   // Consider adding a query to limit the number of talks or to include necessary relations
   query: { populate: ["*"]  },
 });
+
+const highlightedTalks = talks.filter(talk => talk.attributes.highlight);
 ---
 
 <BaseLayout>
@@ -19,9 +21,9 @@ const talks = await fetchApi({
   </section>
   <section class="talks-highlights">
     <h2>Talks Highlights</h2>
-    {talks.length > 0 ? (
+    {highlightedTalks.length > 0 ? (
       <ul class="talks-list">
-        {talks.map((talk) => (
+        {highlightedTalks.map((talk) => (
           <li key={talk.id} class="talk-item">
             <TalkHighlight talk={talk} />
           </li>
@@ -72,7 +74,7 @@ const talks = await fetchApi({
     flex-direction: row;
     margin-bottom: 1rem;
     margin-top: 3rem;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 
   li:nth-of-type(2n) {
