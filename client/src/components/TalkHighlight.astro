@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-
 const { talk } = Astro.props;
 ---
 
@@ -20,7 +19,7 @@ const { talk } = Astro.props;
       />
       )
     }
-    </div>
+  </div>
   <div class="talk-info">
     <h3>{talk.attributes.name}</h3>
     <p class="talk-location">Location: {talk.attributes.location.data.attributes.name}</p>
@@ -30,8 +29,6 @@ const { talk } = Astro.props;
       <a href={`/talks/${talk.id}`}>See more</a>
     </div>
   </div>
-
-
 <style>
 
   .talk-info h3 {

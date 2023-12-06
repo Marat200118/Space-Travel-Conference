@@ -1,6 +1,11 @@
 ---
 import { Image } from "astro:assets";
 const { talk } = Astro.props;
+
+const speaker = talk.attributes.speaker.data.attributes;
+const location = talk.attributes.location.data.attributes;
+
+
 ---
 <div class="talk">
   <div class="talk-image">
@@ -12,22 +17,22 @@ const { talk } = Astro.props;
           talk.attributes.image?.data?.attributes.url
         }`}
         alt="Talk image"
-        width="450"
-        height="600"
+        width="300"
+        height="400"
         widths={[250, 350, 500, 750]}
         sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
       />
       )
     }
-    </div>
+  </div>
   <div class="talk-info">
     <h3>{talk.attributes.name}</h3>
-    <p class="talk-location">Location: {talk.attributes.location.data.attributes.name}</p>
+    <p class="talk-location">Location: {location.name}</p>
     <p class="time">Time: {talk.attributes.time}</p>
     <p>{talk.attributes.description}</p>
     <div class="duration-and-language">
-      <p class="duration">Duration: {talk.attributes.duration} min</p>
-      <p class="language">Language: {talk.attributes.language}</p>
+      <p class="duration">Duration: <span>{talk.attributes.duration}  min</span></p>
+      <p class="language">Language: <span>{talk.attributes.language}</span></p>
     </div>
     <div class="button">
       <a href={`/talks/${talk.id}`}>Buy Tickets</a>
@@ -35,14 +40,61 @@ const { talk } = Astro.props;
   </div>
 </div>
 
-<section class="speaker-info">
-    <h3>Speaker</h3>
-    <p>{talk.attributes.speaker.data.attributes.name}</p>
-    <p>{talk.attributes.speaker.data.attributes.bio}</p>
-  </section>
+<div class="speaker-info">
+  {speaker.image?.data?.attributes.url && (
+    <div class="speaker-image">
+      <Image
+        src={`${import.meta.env.STRAPI_URL}${speaker.image.data.attributes.url}`}
+        alt={`Photo of ${speaker.name}`}
+        width="400"
+        height="320"
+        widths={[250, 350, 500, 750]}
+        sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
+      />
+    </div>
+  )}
+
+  <div class="speaker-details">
+    <h4>Speaker: {speaker.name}</h4>
+    <p>{speaker.description}</p>
+  </div>
+</div>
+
+<!-- <div class="other-talks">
+  {otherTalks && otherTalks.length > 0 && (
+  <div class="other-talks">
+    <h3>Other Talks by {speaker.name}</h3>
+    <ul>
+      {otherTalks.map((otherTalk) => (
+        <li key={otherTalk.id}>
+          <a href={`/talks/${otherTalk.id}`}>
+            {otherTalk.attributes.name}
+            {/* Add more details as needed */}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+</div> -->
 
 
 <style>
+
+  .speaker-info {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+  }
+
+  .speaker-details {
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
 
   .duration-and-language {
     display: flex;
@@ -57,6 +109,11 @@ const { talk } = Astro.props;
     margin-bottom: 2rem;
     align-items: center;
     justify-content: space-evenly;
+  }
+
+  .talk-location, .duration-and-language span {
+    font-weight: bold;
+    color: rgb(218, 84, 7)
   }
 
   .talk-info {

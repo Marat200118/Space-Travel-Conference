@@ -28,6 +28,11 @@
         "videos",
         "audios"
       ]
+    },
+    "talks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::talk.talk"
     }
   }
 }

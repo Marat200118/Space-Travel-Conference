@@ -723,6 +723,11 @@ export interface ApiSpeakerSpeaker extends Schema.CollectionType {
     name: Attribute.String;
     description: Attribute.Text;
     image: Attribute.Media;
+    talks: Attribute.Relation<
+      'api::speaker.speaker',
+      'oneToMany',
+      'api::talk.talk'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
