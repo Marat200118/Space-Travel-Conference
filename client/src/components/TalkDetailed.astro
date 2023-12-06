@@ -1,9 +1,8 @@
 ---
 import { Image } from "astro:assets";
-
 const { talk } = Astro.props;
 ---
-
+<div class="talk">
   <div class="talk-image">
     {
       talk.attributes.image?.data?.attributes.url &&
@@ -13,8 +12,8 @@ const { talk } = Astro.props;
           talk.attributes.image?.data?.attributes.url
         }`}
         alt="Talk image"
-        width="300"
-        height="400"
+        width="450"
+        height="600"
         widths={[250, 350, 500, 750]}
         sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
       />
@@ -26,25 +25,38 @@ const { talk } = Astro.props;
     <p class="talk-location">Location: {talk.attributes.location.data.attributes.name}</p>
     <p class="time">Time: {talk.attributes.time}</p>
     <p>{talk.attributes.description}</p>
+    <div class="duration-and-language">
+      <p class="duration">Duration: {talk.attributes.duration} min</p>
+      <p class="language">Language: {talk.attributes.language}</p>
+    </div>
     <div class="button">
-      <a href={`/talks/${talk.id}`}>See more</a>
+      <a href={`/talks/${talk.id}`}>Buy Tickets</a>
     </div>
   </div>
+</div>
+
+<section class="speaker-info">
+    <h3>Speaker</h3>
+    <p>{talk.attributes.speaker.data.attributes.name}</p>
+    <p>{talk.attributes.speaker.data.attributes.bio}</p>
+  </section>
 
 
 <style>
 
-  .talk-info h3 {
-    margin-bottom: 1.5rem;
+  .duration-and-language {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 
-  /* .talk-info p {
-    width: 50%;
-  } */
-
-  .talk-location {
-    font-weight: bold;
-    color: rgb(218, 84, 7)
+  .talk {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: space-evenly;
   }
 
   .talk-info {
@@ -52,12 +64,7 @@ const { talk } = Astro.props;
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
-
-  .time {
-    font-weight: bold;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    gap: 2rem;
   }
 
   .button {
@@ -81,8 +88,6 @@ const { talk } = Astro.props;
     cursor: pointer;
     border: 1px solid var(--color-primary);
   }
-  
-
 
 </style>
 

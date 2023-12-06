@@ -1,7 +1,7 @@
 ---
 // src/pages/talks/[id].astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TalkHighlight from '../../components/TalkHighlight.astro';
+import TalkDetailed from '../../components/TalkDetailed.astro';
 import fetchApi from '../../lib/strapi';
 
 export async function getStaticPaths() {
@@ -11,17 +11,17 @@ export async function getStaticPaths() {
     query: { populate: "*" },
   });
 
-  // Generate a path for each talk
   const paths = talks.map((talk) => ({
     params: { id: talk.id.toString() },
+    props: { talk }, 
   }));
 
   return paths;
 }
 
-const { talk } = Astro.props;
+const { talk } = Astro.props; 
 ---
 
 <BaseLayout>
-  <TalkHighlight talk={talk} />
+  <TalkDetailed talk={talk} />
 </BaseLayout>

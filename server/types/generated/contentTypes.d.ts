@@ -677,6 +677,37 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiLocationLocation extends Schema.CollectionType {
+  collectionName: 'locations';
+  info: {
+    singularName: 'location';
+    pluralName: 'locations';
+    displayName: 'Location';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::location.location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::location.location',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSpeakerSpeaker extends Schema.CollectionType {
   collectionName: 'speakers';
   info: {
@@ -732,6 +763,13 @@ export interface ApiTalkTalk extends Schema.CollectionType {
     >;
     image: Attribute.Media;
     highlight: Attribute.Boolean;
+    location: Attribute.Relation<
+      'api::talk.talk',
+      'oneToOne',
+      'api::location.location'
+    >;
+    duration: Attribute.Integer;
+    language: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -758,6 +796,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::location.location': ApiLocationLocation;
       'api::speaker.speaker': ApiSpeakerSpeaker;
       'api::talk.talk': ApiTalkTalk;
     }

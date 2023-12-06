@@ -7,7 +7,6 @@ import TalkHighlight from "../components/TalkHighlight.astro";
 const talks = await fetchApi({
   endpoint: "talks",
   wrappedByKey: "data",
-  // Consider adding a query to limit the number of talks or to include necessary relations
   query: { populate: ["*"]  },
 });
 
