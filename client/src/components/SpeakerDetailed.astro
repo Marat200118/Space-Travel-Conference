@@ -25,7 +25,10 @@ const { speaker } = Astro.props;
   )}
 
   <div class="speaker-info">
-    <h2>{speaker.attributes.name}</h2>
+    <div class="name-position">
+      <h2>{speaker.attributes.name}</h2>
+      <p class="position">{speaker.attributes.position}</p>
+    </div>
     <p>{speaker.attributes.description}</p>
   </div>
 </div>
@@ -58,6 +61,10 @@ const { speaker } = Astro.props;
     height: 100vh;
   }
 
+  .position {
+    color: #c6b415;
+    font-weight: bold;
+  }
   .speaker-image {
     margin-bottom: 2rem;
   }

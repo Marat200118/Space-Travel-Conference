@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import fetchApi from '../lib/strapi.js';
+import SpeakerHighlight from '../components/SpeakerHighlight.astro';
+
+const speakers = await fetchApi({
+  endpoint: 'speakers',
+  wrappedByKey: 'data',
+  query: { populate: ['*'] },
+});
+---
+
+<BaseLayout>
+  <section class="speakers-section">
+    <h2>Our Speakers</h2>
+    <div class="speakers-grid">
+      {speakers.map((speaker) => (
+        <div key={speaker.id} class="speaker-item-all">
+          <SpeakerHighlight speaker={speaker} customClass="speaker-column-layout" />
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .speakers-section {
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+
+  .speakers-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 2rem;
+  }
+
+  .speaker-item-all {
+    flex-direction: column;
+    flex-basis: calc(33.333% - 20px);
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .speaker-item-all:hover {
+    transform: translateY(-5px);
+  }
+
+  @media (max-width: 768px) {
+    .speaker-item-all {
+      flex-basis: calc(50% - 20px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .speaker-item-all {
+      flex-basis: 100%;
+    }
+  }
+</style>
