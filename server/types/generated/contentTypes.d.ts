@@ -728,6 +728,8 @@ export interface ApiSpeakerSpeaker extends Schema.CollectionType {
       'oneToMany',
       'api::talk.talk'
     >;
+    highlight: Attribute.Boolean;
+    position: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

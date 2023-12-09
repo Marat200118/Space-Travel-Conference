@@ -35,7 +35,7 @@ const location = talk.attributes.location.data.attributes;
       <p class="language">Language: <span>{talk.attributes.language}</span></p>
     </div>
     <div class="button">
-      <a href={`/talks/${talk.id}`}>Buy Tickets</a>
+      <a href={`/register`}>Buy Tickets</a>
     </div>
   </div>
 </div>
@@ -47,7 +47,7 @@ const location = talk.attributes.location.data.attributes;
         src={`${import.meta.env.STRAPI_URL}${speaker.image.data.attributes.url}`}
         alt={`Photo of ${speaker.name}`}
         width="400"
-        height="320"
+        height="300"
         widths={[250, 350, 500, 750]}
         sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
       />
@@ -59,24 +59,6 @@ const location = talk.attributes.location.data.attributes;
     <p>{speaker.description}</p>
   </div>
 </div>
-
-<!-- <div class="other-talks">
-  {otherTalks && otherTalks.length > 0 && (
-  <div class="other-talks">
-    <h3>Other Talks by {speaker.name}</h3>
-    <ul>
-      {otherTalks.map((otherTalk) => (
-        <li key={otherTalk.id}>
-          <a href={`/talks/${otherTalk.id}`}>
-            {otherTalk.attributes.name}
-            {/* Add more details as needed */}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
-</div> -->
 
 
 <style>
@@ -126,24 +108,6 @@ const location = talk.attributes.location.data.attributes;
 
   .button {
     margin-top: 2rem;
-  }
-
-  .button a {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
-    padding: 1rem 3rem;
-    text-decoration: none;
-    border-radius: 3px;
-    font-weight: bold;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .button a:hover {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-    cursor: pointer;
-    border: 1px solid var(--color-primary);
   }
 
 </style>

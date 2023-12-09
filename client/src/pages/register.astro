@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+  <section class="register-section">
+    <div class="register-container">
+      <h2>Register/Buy Tickets</h2>
+      <p>Join our exciting event about space travel! Choose your preferred ticket option below.</p>
+
+      <div class="ticket-options">
+        <div class="ticket-option">
+          <h3>Standard Ticket</h3>
+          <p>Access to all general sessions, workshops, and exhibitions.</p>
+          <p>Price: $100</p>
+        </div>
+
+        <div class="ticket-option">
+          <h3>VIP Ticket</h3>
+          <p>All Standard benefits plus VIP seating and special networking events.</p>
+          <p>Price: $250</p>
+        </div>
+
+        <div class="ticket-option">
+          <h3>Online Access</h3>
+          <p>Live stream the event from the comfort of your home.</p>
+          <p>Price: $50</p>
+        </div>
+      </div>
+
+      <a href="https://yourticketingservice.com" target="_blank" class="ticket-btn">Buy Tickets</a>
+
+      <div class="event-location">
+        <h3>Event Location</h3>
+        <p>Galaxy Convention Center, Space City</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .register-section {
+    padding: 4rem 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    text-align: center;
+  }
+
+  .register-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .ticket-options {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+  }
+
+  .ticket-option {
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    width: 30%;
+  }
+
+  .ticket-btn {
+    display: inline-block;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    background-color: darken(var(--color-primary), 10%);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .ticket-btn:hover {
+    color: var(--color-primary);
+    background-color: var(--color-accent);
+  }
+
+  .event-location {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+  }
+  
+</style>

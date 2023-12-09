@@ -33,6 +33,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::talk.talk"
+    },
+    "highlight": {
+      "type": "boolean"
+    },
+    "position": {
+      "type": "string"
     }
   }
 }

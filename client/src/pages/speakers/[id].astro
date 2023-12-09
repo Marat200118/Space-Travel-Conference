@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SpeakerDetailed from '../../components/SpeakerDetailed.astro';
+import fetchApi from '../../lib/strapi';
+
+export async function getStaticPaths() {
+
+  const speakers = await fetchApi({
+    endpoint: "speakers",
+    wrappedByKey: "data",
+    query: { populate: ["*", "image", "talks", "talks.image"] }, // Adjust the populate query as needed
+  });
+
+  const paths = speakers.map((speaker) => ({
+    params: { id: speaker.id.toString() },
+    props: { speaker },
+  }));
+
+  return paths;
+}
+
+export async function getStaticProps({ params }) {
+  const { id } = params;
+
+  
+  const speaker = await fetchApi({
+    endpoint: `speakers/${id}`,
+    wrappedByKey: 'data',
+    query: { populate: ["*", "image", "talks", "talks.image"] },
+  });
+
+  return { props: { speaker } };
+}
+
+const { speaker } = Astro.props;
+---
+
+<BaseLayout>
+  <SpeakerDetailed speaker={speaker} />
+</BaseLayout>

@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+const { speaker } = Astro.props;
+---
+
+<div class="speaker-item">
+   <div class="speaker-image">
+    {
+      speaker.attributes.image?.data?.attributes.url &&
+      (
+      <Image
+          src={`${import.meta.env.STRAPI_URL}${
+          speaker.attributes.image?.data?.attributes.url
+        }`}
+        alt="Talk image"
+        width="420"
+        height="300"
+        widths={[250, 350, 500, 750]}
+        sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
+      />
+      )
+    }
+  </div>
+  <div class="speaker-info">
+    <h3>{speaker.attributes.name}</h3>
+    <p>{speaker.attributes.description}</p>
+    <div class="button">
+      <a href={`/speakers/${speaker.id}`}>See more</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .speaker-item {
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .speaker-image {
+    margin-right: 2rem;
+  }
+
+  .speaker-info h3 {
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+  }
+
+  .speaker-info {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .button {
+    margin-top: 2rem;
+  }
+
+  
+</style>
