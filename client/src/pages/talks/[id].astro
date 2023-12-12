@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TalkDetailed from '../../components/TalkDetailed.astro';
+
 import fetchApi from '../../lib/strapi';
 
 
@@ -11,6 +12,8 @@ export async function getStaticPaths() {
     wrappedByKey: "data",
     query: { populate: ["*", "image", "speaker", "speaker.image", "location", "speaker.talks"] }
   });
+
+  
 
   const paths = talks.map((talk) => ({
     params: { id: talk.id.toString() },
@@ -23,6 +26,8 @@ export async function getStaticPaths() {
 const { talk } = Astro.props; 
 //  const { id } = Astro.request.params;
 // const otherTalks = talk.attributes.speaker.data.attributes.talks.data.filter(t => t.id !== id);
+
+
 ---
 
 <BaseLayout>

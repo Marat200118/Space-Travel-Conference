@@ -4,6 +4,7 @@ const { talk } = Astro.props;
 
 const speaker = talk.attributes.speaker.data.attributes;
 const location = talk.attributes.location.data.attributes;
+// const locationId = talk.attributes.location.data.id;
 
 
 ---
@@ -28,7 +29,7 @@ const location = talk.attributes.location.data.attributes;
   <div class="talk-info">
     <h3>{talk.attributes.name}</h3>
     <p class="talk-location">Location: {location.name}</p>
-    <p class="time">Time: {talk.attributes.time}</p>
+    <p class="time">Time: {talk.attributes.time.split(':').slice(0, 2).join(':')}</p>
     <p>{talk.attributes.description}</p>
     <div class="duration-and-language">
       <p class="duration">Duration: <span>{talk.attributes.duration}  min</span></p>
@@ -60,6 +61,10 @@ const location = talk.attributes.location.data.attributes;
   </div>
 </div>
 
+<div class="location-talks">
+  <h3>Other talks at this location</h3>
+  <!-- <LocationTalks locationId={locationId} />" -->
+</div>
 
 <style>
 

@@ -25,7 +25,7 @@ const { talk } = Astro.props;
     <p class="talk-location">Location: {talk.attributes.location.data.attributes.name}</p>
     <div class="time-and-date">
       <p class="talk-date">Date: {talk.attributes.date}</p>
-      <p class="time">Time: {talk.attributes.time}</p>
+      <p class="time">Time: {talk.attributes.time.split(':').slice(0, 2).join(':')}</p>
     </div>
     <p>{talk.attributes.description}</p>
     <div class="button">

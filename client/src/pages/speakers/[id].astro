@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SpeakerDetailed from '../../components/SpeakerDetailed.astro';
+import TalkHighlight from '../../components/TalkHighlight.astro';
 import fetchApi from '../../lib/strapi';
 
 export async function getStaticPaths() {
@@ -8,7 +9,7 @@ export async function getStaticPaths() {
   const speakers = await fetchApi({
     endpoint: "speakers",
     wrappedByKey: "data",
-    query: { populate: ["*", "image", "talks", "talks.image"] }, // Adjust the populate query as needed
+    query: { populate: ["*", "image", "talks", "talks.image"] },
   });
 
   const paths = speakers.map((speaker) => ({
@@ -19,22 +20,11 @@ export async function getStaticPaths() {
   return paths;
 }
 
-// export async function getStaticProps({ params }) {
-//   const { id } = params;
-
-  
-//   const speaker = await fetchApi({
-//     endpoint: `speakers/${id}`,
-//     wrappedByKey: 'data',
-//     query: { populate: ["*", "image", "talks", "talks.image"] },
-//   });
-
-//   return { props: { speaker } };
-// }
-
 const { speaker } = Astro.props;
 ---
 
 <BaseLayout>
   <SpeakerDetailed speaker={speaker} />
+    <!-- <TalkHighlight talk={speaker.talk} /> -->
+  <!-- </SpeakerDetailed> -->
 </BaseLayout>

@@ -1,8 +1,6 @@
 ---
 import { Image } from "astro:assets";
 const { speaker } = Astro.props;
-// import TalkHighlight from "../components/TalkHighlight.astro";
-// console.log('Speaker Talks:', JSON.stringify(speaker.attributes.talks, null, 2));
 ---
 
 <div class="speaker-detailed">
@@ -19,7 +17,7 @@ const { speaker } = Astro.props;
         width="550"
         height="400"
         widths={[250, 350, 500, 750]}
-        sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
+        sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vwS, 30vw"
       />
       )
     }
@@ -35,28 +33,16 @@ const { speaker } = Astro.props;
   </div>
 </div>
 
-<!-- <div class="speaker-talks">
-  {speaker.attributes.talks?.data.length > 0 && (
-      <h3>Talks by {speaker.attributes.name}</h3>
-      <ul>
-        {speaker.attributes.talks.data.map((talk) => (
-          JSON.stringify(talk.attributes.name)
-          
-          
-        ))}
-      </ul>
-
-  )}
-</div> -->
-
 <div class="speaker-talks">
   {speaker.attributes.talks?.data.length > 0 && (
     <div>
       <h3>Talks by {speaker.attributes.name}</h3>
       <ul>
         {speaker.attributes.talks.data.map((talk) => (
+          // <li key={talk.id}>
+          //  <slot />
+          // </li>
           <li>
-        
             {talk.attributes.name}
           </li>
         ))}
