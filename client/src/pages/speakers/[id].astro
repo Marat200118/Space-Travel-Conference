@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   });
 
   const paths = speakers.map((speaker) => ({
-    params: { id: speaker.id.toString() },
+    params: { id: speaker.id.toString()},
     props: { speaker },
   }));
 

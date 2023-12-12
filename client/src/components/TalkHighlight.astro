@@ -29,7 +29,8 @@ const { talk } = Astro.props;
     </div>
     <p>{talk.attributes.description}</p>
     <div class="button">
-      <a href={`/talks/${talk.id}`}>See more</a>
+       <a href={`${import.meta.env.BASE_URL}/talks/${talk.id}`}>See more</a>
+
     </div>
   </div>
 <style>
