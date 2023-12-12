@@ -19,18 +19,18 @@ export async function getStaticPaths() {
   return paths;
 }
 
-export async function getStaticProps({ params }) {
-  const { id } = params;
+// export async function getStaticProps({ params }) {
+//   const { id } = params;
 
   
-  const speaker = await fetchApi({
-    endpoint: `speakers/${id}`,
-    wrappedByKey: 'data',
-    query: { populate: ["*", "image", "talks", "talks.image"] },
-  });
+//   const speaker = await fetchApi({
+//     endpoint: `speakers/${id}`,
+//     wrappedByKey: 'data',
+//     query: { populate: ["*", "image", "talks", "talks.image"] },
+//   });
 
-  return { props: { speaker } };
-}
+//   return { props: { speaker } };
+// }
 
 const { speaker } = Astro.props;
 ---

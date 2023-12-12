@@ -23,13 +23,23 @@ const { talk } = Astro.props;
   <div class="talk-info">
     <h3>{talk.attributes.name}</h3>
     <p class="talk-location">Location: {talk.attributes.location.data.attributes.name}</p>
-    <p class="time">Time: {talk.attributes.time}</p>
+    <div class="time-and-date">
+      <p class="talk-date">Date: {talk.attributes.date}</p>
+      <p class="time">Time: {talk.attributes.time}</p>
+    </div>
     <p>{talk.attributes.description}</p>
     <div class="button">
       <a href={`/talks/${talk.id}`}>See more</a>
     </div>
   </div>
 <style>
+
+  .time-and-date {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 3rem;
+  }
 
   .talk-info h3 {
     margin-bottom: 1.5rem;

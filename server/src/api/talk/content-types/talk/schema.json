@@ -18,9 +18,6 @@
     "description": {
       "type": "text"
     },
-    "time": {
-      "type": "string"
-    },
     "speaker": {
       "type": "relation",
       "relation": "oneToOne",
@@ -50,6 +47,12 @@
     },
     "language": {
       "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "time": {
+      "type": "time"
     }
   }
 }

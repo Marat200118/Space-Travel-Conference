@@ -762,7 +762,6 @@ export interface ApiTalkTalk extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     description: Attribute.Text;
-    time: Attribute.String;
     speaker: Attribute.Relation<
       'api::talk.talk',
       'oneToOne',
@@ -777,6 +776,8 @@ export interface ApiTalkTalk extends Schema.CollectionType {
     >;
     duration: Attribute.Integer;
     language: Attribute.String;
+    date: Attribute.Date;
+    time: Attribute.Time;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

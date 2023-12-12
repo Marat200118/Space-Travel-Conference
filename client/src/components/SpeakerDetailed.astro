@@ -39,12 +39,13 @@ const { speaker } = Astro.props;
       <h3>Talks by {speaker.attributes.name}</h3>
       <ul>
         {speaker.attributes.talks.data.map((talk) => (
-          <li key={talk.id}>
-            <a href={`/talks/${talk.id}`}>
-              {talk.attributes.name}
-              {/* Add more details as needed */}
-            </a>
-          </li>
+          JSON.stringify(talk.attributes.name)
+          // <li key={talk.id}>
+          //   <a href={`/talks/${talk.id}`}>
+          //     {talk.attributes.name}
+          //     {/* Add more details as needed */}
+          //   </a>
+          // </li>
         ))}
       </ul>
     </div>
