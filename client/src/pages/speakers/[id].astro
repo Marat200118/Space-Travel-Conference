@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SpeakerDetailed from '../../components/SpeakerDetailed.astro';
-import TalkHighlight from '../../components/TalkHighlight.astro';
+import SpeakerTalks from '../../components/SpeakerTalks.astro';
 import fetchApi from '../../lib/strapi';
 
 export async function getStaticPaths() {
@@ -21,11 +21,11 @@ export async function getStaticPaths() {
 }
 
 const { speaker } = Astro.props;
+
+const speakerTalks = speaker.attributes.talks?.data || [];
 ---
 
 <BaseLayout>
   <SpeakerDetailed speaker={speaker}/>
-  <!-- <TalkHighlight speaker={speaker.attributes?.talks.data} /> -->
-  <!-- <p>{JSON.stringify(speaker.attributes?.talks)}</p> -->
-
+  <SpeakerTalks speakerTalks={speakerTalks} />
 </BaseLayout>
