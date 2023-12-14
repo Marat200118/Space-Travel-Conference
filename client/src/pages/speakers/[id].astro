@@ -24,7 +24,8 @@ const { speaker } = Astro.props;
 ---
 
 <BaseLayout>
-  <SpeakerDetailed speaker={speaker} />
-    <!-- <TalkHighlight talk={speaker.talk} /> -->
-  <!-- </SpeakerDetailed> -->
+  <SpeakerDetailed speaker={speaker}/>
+  <!-- <TalkHighlight speaker={speaker.attributes?.talks.data} /> -->
+  <!-- <p>{JSON.stringify(speaker.attributes?.talks)}</p> -->
+
 </BaseLayout>

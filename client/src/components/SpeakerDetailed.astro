@@ -39,9 +39,6 @@ const { speaker } = Astro.props;
       <h3>Talks by {speaker.attributes.name}</h3>
       <ul>
         {speaker.attributes.talks.data.map((talk) => (
-          // <li key={talk.id}>
-          //  <slot />
-          // </li>
           <li>
             {talk.attributes.name}
           </li>
