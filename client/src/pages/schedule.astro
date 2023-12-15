@@ -5,12 +5,11 @@ import fetchApi from "../lib/strapi.js";
 const talks = await fetchApi({
   endpoint: "talks",
   wrappedByKey: "data",
-  query: { populate: ["*", "location"] },
+  query: { populate: ["*", "location", "speaker"] },
 });
 
 const groupedTalks = {};
 
-// Group talks by location and day
 talks.forEach((talk) => {
   const locationName = talk.attributes.location.data.attributes.name;
   const talkDate = new Date(talk.attributes.date);
@@ -20,7 +19,7 @@ talks.forEach((talk) => {
   }
 
   const day = talkDate.getDate();
-  const month = talkDate.getMonth() + 1; // Months are zero-based
+  const month = talkDate.getMonth() + 1;
 
   const formattedDate = `${day}/${month}/${talkDate.getFullYear()}`;
 
@@ -48,16 +47,17 @@ for (const location in groupedTalks) {
     {Object.entries(groupedTalks).map(([location, locationDays]) => (
       <div key={location} class="location-schedule">
         <h3 class="schedule-heading">{location}</h3>
-        <div class="schedule-columns">
+        <div class="schedule-columns" id={location}>
           {Object.entries(locationDays).map(([day, dayTalks]) => (
             <div key={day} class="day-column">
               <h4 class="schedule-heading">{day}</h4>
               <ul class="talks-list">
                 {dayTalks.map((talk) => (
                   <li key={talk.id} class="talk-item">
-                    <p>{talk.attributes.name}</p>
+                    <p class="talk-name">{talk.attributes.name}</p>
                     <p class="time">{talk.attributes.time.split(':').slice(0, 2).join(':')}</p>
-                    <a href={`${import.meta.env.BASE_URL}/talks/${talk.id}`}>Buy Tickets</a>
+                    <p>Speaker: {talk.attributes.speaker.data.attributes.name}</p>
+                    <a href={`${import.meta.env.BASE_URL}/talks/${talk.id}`}>Details</a>
                   </li>
                 ))}
               </ul>
@@ -77,6 +77,10 @@ for (const location in groupedTalks) {
     font-weight: bold;
   }
 
+  #Paris {
+    flex-direction: row-reverse;
+  }
+
   .schedule {
     padding: 4rem 1rem;
     display: flex;
@@ -87,6 +91,10 @@ for (const location in groupedTalks) {
   .location-schedule {
     margin-bottom: 2rem;
     margin-top: 2rem;
+  }
+
+  .talk-name {
+    font-weight: bold;
   }
 
   .talks-list {
@@ -100,6 +108,7 @@ for (const location in groupedTalks) {
   }
 
   .talk-item {
+    width: 30rem;
     margin-bottom: 1rem;
     background-color: var(--color-accent);
     padding: 1rem;
@@ -108,9 +117,9 @@ for (const location in groupedTalks) {
     gap: 0.5rem;
   }
 
-  .paris {
+  /* .paris {
     flex-direction: row-reverse;
-  }
+  } */
 
   .talk-item a {
     color: var(--color-primary);

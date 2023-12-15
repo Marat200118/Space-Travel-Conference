@@ -6,9 +6,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="contact-section">
     <div class="contact-details">
       <h2>Contact Us</h2>
-      <p>Email: contact@example.com</p>
+      <p>Email of head organiser: marat.samigullin1@gmail.com</p>
       <p>Phone: +123 456 7890</p>
-      <p>Address: 123 Space Road, Galaxy Town, Universe</p>
     </div>
 
     <div class="contact-form-container">
@@ -47,6 +46,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     width: 40%;
   }
 
@@ -65,9 +67,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     text-align: left;
   }
 
@@ -86,9 +89,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 1rem;
   }
 
   .submit-btn:hover {
-    background-color: darken(var(--color-secondary), 10%);
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    border: 1px solid var(--color-secondary);
   }
 </style>

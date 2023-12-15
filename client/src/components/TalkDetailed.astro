@@ -64,12 +64,57 @@ const location = talk.attributes.location.data.attributes;
   </div>
 </div>
 
-<div class="location-talks">
-  <h3>Other talks at this location</h3>
+
+<div class="location-info">
+  <!-- <p>{JSON.stringify(talk.attributes.location.data.attributes.description)}</p> -->
+  <div class="location-data">
+    <h3>The conference location</h3>
+    <p class="city">{talk.attributes.location.data.attributes.name}</p>
+    <p>{talk.attributes.location.data.attributes.description}</p>
+    <p class="address">{talk.attributes.location.data.attributes.adress}</p>
+  </div>
+  <div class="location-image">
+    {
+      talk.attributes.location.data.attributes.image?.data?.attributes.url &&
+      (
+      <Image
+          src={`${import.meta.env.STRAPI_URL}${
+          talk.attributes.location.data.attributes.image?.data?.attributes.url
+        }`}
+        alt="Location image"
+        width="500"
+        height="350"
+        widths={[250, 350, 500, 750]}
+        sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
+      />
+      )
+    }
 
 </div>
 
 <style>
+
+  .location-info {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 5rem;
+  }
+
+  .city, .address {
+    font-weight: bold;
+    color: rgb(218, 84, 7)
+  }
+
+  .location-data {
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
 
   li {
     list-style: none;

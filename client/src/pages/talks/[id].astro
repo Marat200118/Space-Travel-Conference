@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   const talks = await fetchApi({
     endpoint: "talks",
     wrappedByKey: "data",
-    query: { populate: ["*", "image", "speaker", "speaker.image", "location", "speaker.talks"] }
+    query: { populate: ["*", "image", "speaker", "speaker.image", "location", "speaker.talks", "location.image"] }
   });
 
   

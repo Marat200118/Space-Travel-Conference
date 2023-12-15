@@ -12,33 +12,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="ticket-option">
           <h3>Standard Ticket</h3>
           <p>Access to all general sessions, workshops, and exhibitions.</p>
-          <p>Price: $100</p>
+          <p class="price">$1,000</p>
         </div>
 
         <div class="ticket-option">
           <h3>VIP Ticket</h3>
           <p>All Standard benefits plus VIP seating and special networking events.</p>
-          <p>Price: $250</p>
+          <p class="price">$2,250</p>
         </div>
 
         <div class="ticket-option">
           <h3>Online Access</h3>
           <p>Live stream the event from the comfort of your home.</p>
-          <p>Price: $50</p>
+          <p class="price">$100</p>
         </div>
       </div>
-
-      <a href="https://yourticketingservice.com" target="_blank" class="ticket-btn">Buy Tickets</a>
-
-      <div class="event-location">
-        <h3>Event Location</h3>
-        <p>Galaxy Convention Center, Space City</p>
-      </div>
+      <a href=`${import.meta.env.BASE_URL}/` class="ticket-btn">Buy Tickets</a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  .price {
+    font-size: 3rem;
+    color: var(--color-accent);
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+  }
+
   .register-section {
     padding: 4rem 1rem;
     background-color: var(--color-secondary);
@@ -58,12 +63,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .ticket-option {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     color: var(--color-secondary);
     background-color: var(--color-primary);
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
     width: 30%;
+    height: 20rem;
   }
 
   .ticket-btn {
