@@ -5,8 +5,6 @@ const { talk } = Astro.props;
 
 const speaker = talk.attributes.speaker.data.attributes;
 const location = talk.attributes.location.data.attributes;
-// const locationId = talk.attributes.location.data.id;
-
 ---
 <div class="talk">
   <div class="talk-image">
@@ -64,9 +62,7 @@ const location = talk.attributes.location.data.attributes;
   </div>
 </div>
 
-
 <div class="location-info">
-  <!-- <p>{JSON.stringify(talk.attributes.location.data.attributes.description)}</p> -->
   <div class="location-data">
     <h3>The conference location</h3>
     <p class="city">{talk.attributes.location.data.attributes.name}</p>
@@ -89,7 +85,7 @@ const location = talk.attributes.location.data.attributes;
       />
       )
     }
-
+  </div>
 </div>
 
 <style>
