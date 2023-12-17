@@ -1,0 +1,61 @@
+---
+const { speakerTalks } = Astro.props;
+const speaker = speakerTalks[0]?.speaker || {}
+---
+
+<div class="speaker-talks">
+  {speakerTalks && speakerTalks.length > 0 && (
+    <div>
+      <ul>
+        {speakerTalks.map((talk) => (
+          <li key={talk.id} class="speaker-talk">
+            <p class="name"> {talk.attributes?.name}</p>
+            <p class="time">{talk.attributes.time.split(':').slice(0, 2).join(':')}</p>
+            <p class="date"> {talk.attributes.date}</p>
+            <a href={`${import.meta.env.BASE_URL}/talks/${talk.id}`}>See more</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</div>
+
+<style>
+  a {
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    text-decoration: none;
+    padding: 1rem 2rem;
+  }
+
+  .speaker-talks h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .speaker-talks ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .speaker-talks li {
+    margin-bottom: 1rem;
+    width: 80%;
+    margin: auto;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--color-primary);
+  }
+
+  .speaker-talks a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    border-radius: 0.2rem;
+  }
+
+  .speaker-talk {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+</style>

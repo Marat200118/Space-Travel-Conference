@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+const { speaker } = Astro.props;
+---
+
+<div class="speaker-detailed">
+  {speaker.attributes.image?.data?.attributes.url && (
+    <div class="speaker-image">
+      {
+        speaker.attributes.image?.data?.attributes.url &&
+      (
+        <Image
+          src={`${import.meta.env.STRAPI_URL}${
+          speaker.attributes.image?.data?.attributes.url
+        }`}
+        alt="Talk image"
+        width="550"
+        height="400"
+        widths={[250, 350, 500, 750]}
+        sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vwS, 30vw"
+      />
+      )
+    }
+  </div>
+  )}
+
+  <div class="speaker-info">
+    <div class="name-position">
+      <h2>{speaker.attributes.name}</h2>
+      <p class="position">{speaker.attributes.position}</p>
+    </div>
+    <p>{speaker.attributes.description}</p>
+  </div>
+</div>
+
+<h3 class="talks-by">Talks by {speaker.attributes.name}</h3>
+
+<style>
+  .talks-by {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .speaker-detailed {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+    height: 100vh;
+  }
+
+  .position {
+    color: #c6b415;
+    font-weight: bold;
+  }
+  .speaker-image {
+    margin-bottom: 2rem;
+  }
+
+  .speaker-info {
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .speaker-info h2 {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .speaker-info p {
+    margin-bottom: 2rem;
+  }
+
+  .speaker-talks h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .speaker-talks ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .speaker-talks li {
+    margin-bottom: 1rem;
+  }
+
+  .speaker-talks a {
+    color: var(--color-secondary);
+    text-decoration: none;
+  }
+</style>

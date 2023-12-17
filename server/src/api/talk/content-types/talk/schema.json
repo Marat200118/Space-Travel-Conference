@@ -18,9 +18,6 @@
     "description": {
       "type": "text"
     },
-    "time": {
-      "type": "string"
-    },
     "speaker": {
       "type": "relation",
       "relation": "oneToOne",
@@ -39,6 +36,23 @@
     },
     "highlight": {
       "type": "boolean"
+    },
+    "location": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::location.location"
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "language": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "time": {
+      "type": "time"
     }
   }
 }

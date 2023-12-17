@@ -2,16 +2,23 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import fetchApi from "../lib/strapi.js";
 import TalkHighlight from "../components/TalkHighlight.astro";
+import SpeakerHighlight from "../components/SpeakerHighlight.astro";
 
 
 const talks = await fetchApi({
   endpoint: "talks",
   wrappedByKey: "data",
-  // Consider adding a query to limit the number of talks or to include necessary relations
   query: { populate: ["*"]  },
 });
 
+const speakers = await fetchApi({
+  endpoint: "speakers",
+  wrappedByKey: "data",
+  query: { populate: ["*"] },
+});
+
 const highlightedTalks = talks.filter(talk => talk.attributes.highlight);
+const highlightedSpeakers = speakers.filter(speaker => speaker.attributes.highlight);
 ---
 
 <BaseLayout>
@@ -35,7 +42,17 @@ const highlightedTalks = talks.filter(talk => talk.attributes.highlight);
   </section>
   <section class="speakers-highlights">
     <h2>Speakers Highlights</h2>
-    <!-- Additional content -->
+    {highlightedSpeakers.length > 0 ? (
+      <ul class="speakers-list">
+        {highlightedSpeakers.map((speaker) => (
+          <li key={speaker.id} class="speaker-item">
+            <SpeakerHighlight speaker={speaker} />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>No highlighted speakers at the moment.</p>
+    )}
   </section>
 </BaseLayout>
 
@@ -77,7 +94,7 @@ const highlightedTalks = talks.filter(talk => talk.attributes.highlight);
     justify-content: space-evenly;
   }
 
-  li:nth-of-type(2n) {
+  .talks-highlights li:nth-of-type(2n), .speakers-highlights li:nth-of-type(2n) {
     flex-direction: row-reverse;
   }
 
@@ -93,5 +110,18 @@ const highlightedTalks = talks.filter(talk => talk.attributes.highlight);
 		display: flex;
     flex-direction: column;
   }
-	
+
+  .speakers-highlights {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 2rem;
+  }
+
+  .speakers-list {
+    display: flex;
+    flex-direction: column;
+  }
+
 </style>

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "speakers",
+  "collectionName": "locations",
   "info": {
-    "singularName": "speaker",
-    "pluralName": "speakers",
-    "displayName": "Speaker",
+    "singularName": "location",
+    "pluralName": "locations",
+    "displayName": "Location",
     "description": ""
   },
   "options": {
@@ -29,15 +29,7 @@
         "audios"
       ]
     },
-    "talks": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::talk.talk"
-    },
-    "highlight": {
-      "type": "boolean"
-    },
-    "position": {
+    "adress": {
       "type": "string"
     }
   }

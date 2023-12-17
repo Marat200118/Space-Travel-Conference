@@ -1,0 +1,184 @@
+---
+import { Image } from "astro:assets";
+
+const { talk } = Astro.props;
+
+const speaker = talk.attributes.speaker.data.attributes;
+const location = talk.attributes.location.data.attributes;
+---
+<div class="talk">
+  <div class="talk-image">
+    {
+      talk.attributes.image?.data?.attributes.url &&
+      (
+      <Image
+          src={`${import.meta.env.STRAPI_URL}${
+          talk.attributes.image?.data?.attributes.url
+        }`}
+        alt="Talk image"
+        width="400"
+        height="500"
+        widths={[250, 350, 500, 750]}
+        sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
+      />
+      )
+    }
+  </div>
+  <div class="talk-info">
+    <h3>{talk.attributes.name}</h3>
+    <p class="talk-location">Location: {location.name}</p>
+    <div class="time-and-date">
+      <p class="time">Time: <span>{talk.attributes.time.split(':').slice(0, 2).join(':')}</span></p>
+      <p class="date">Date: <span>{talk.attributes.date}</span></p>
+    </div>
+    <p>{talk.attributes.description}</p>
+    <div class="duration-and-language">
+      <p class="duration">Duration: <span>{talk.attributes.duration}  min</span></p>
+      <p class="language">Language: <span>{talk.attributes.language}</span></p>
+    </div>
+    <div class="button">
+     <li><a href=`${import.meta.env.BASE_URL}/register`>Buy Tickets</a></li>
+    </div>
+  </div>
+</div>
+
+<div class="speaker-info">
+  {speaker.image?.data?.attributes.url && (
+    <div class="speaker-image">
+      <Image
+        src={`${import.meta.env.STRAPI_URL}${speaker.image.data.attributes.url}`}
+        alt={`Photo of ${speaker.name}`}
+        width="400"
+        height="300"
+        widths={[250, 350, 500, 750]}
+        sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
+      />
+    </div>
+  )}
+
+  <div class="speaker-details">
+    <h4>Speaker: {speaker.name}</h4>
+    <p>{speaker.description}</p>
+  </div>
+</div>
+
+<div class="location-info">
+  <div class="location-data">
+    <h3>The conference location</h3>
+    <p class="city">{talk.attributes.location.data.attributes.name}</p>
+    <p>{talk.attributes.location.data.attributes.description}</p>
+    <p class="address">{talk.attributes.location.data.attributes.adress}</p>
+  </div>
+  <div class="location-image">
+    {
+      talk.attributes.location.data.attributes.image?.data?.attributes.url &&
+      (
+      <Image
+          src={`${import.meta.env.STRAPI_URL}${
+          talk.attributes.location.data.attributes.image?.data?.attributes.url
+        }`}
+        alt="Location image"
+        width="500"
+        height="350"
+        widths={[250, 350, 500, 750]}
+        sizes="(max-width: 35em) 70vw, (max-width: 50em) 60vw, 30vw"
+      />
+      )
+    }
+  </div>
+</div>
+
+<style>
+
+  .location-info {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 5rem;
+  }
+
+  .city, .address {
+    font-weight: bold;
+    color: rgb(218, 84, 7)
+  }
+
+  .location-data {
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .speaker-info {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+  }
+
+  .speaker-details {
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .duration-and-language {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .talk {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .talk-location, .duration-and-language span {
+    font-weight: bold;
+    color: rgb(218, 84, 7)
+  }
+
+  .time-and-date span {
+    font-weight: bold;
+    color: rgb(218, 84, 7)
+  }
+
+  .time-and-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .talk-info {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .button {
+    margin-top: 2rem;
+  }
+
+</style>
+
+
+
+
+
+
+

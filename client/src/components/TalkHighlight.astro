@@ -1,7 +1,5 @@
 ---
-import fetchApi from "../lib/strapi.js";
 import { Image } from "astro:assets";
-
 const { talk } = Astro.props;
 ---
 
@@ -21,26 +19,38 @@ const { talk } = Astro.props;
       />
       )
     }
-    </div>
+      
+  </div>
   <div class="talk-info">
     <h3>{talk.attributes.name}</h3>
-    <p class="time">Time: {talk.attributes.time}</p>
+    <p class="talk-location">Location: {talk.attributes.location.data.attributes.name}</p>
+    <div class="time-and-date">
+      <p class="talk-date">Date: {talk.attributes.date}</p>
+      <p class="time">Time: {talk.attributes.time.split(':').slice(0, 2).join(':')}</p>
+    </div>
     <p>{talk.attributes.description}</p>
     <div class="button">
-      <a href={talk.attributes.link} target="_blank">Watch</a>
+       <a href={`${import.meta.env.BASE_URL}/talks/${talk.id}`}>See more</a>
+
     </div>
   </div>
-
-
 <style>
+
+  .time-and-date {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 3rem;
+  }
 
   .talk-info h3 {
     margin-bottom: 1.5rem;
   }
-
-  /* .talk-info p {
-    width: 50%;
-  } */
+  
+  .talk-location {
+    font-weight: bold;
+    color: rgb(218, 84, 7)
+  }
 
   .talk-info {
     max-width: 50%;
@@ -58,27 +68,6 @@ const { talk } = Astro.props;
   .button {
     margin-top: 2rem;
   }
-
-  .button a {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
-    padding: 1rem 3rem;
-    text-decoration: none;
-    border-radius: 3px;
-    font-weight: bold;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .button a:hover {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-    cursor: pointer;
-    border: 1px solid var(--color-primary);
-  }
-  
-
-
 </style>
 
 
