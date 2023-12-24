@@ -4,8 +4,16 @@ Welcome to the Creative Space Travel Conference, a fictional multi-day event bri
 
 ## Overview
 
+### Home page
+![screencapture-marats-samigullins-creative-conference-2023-12-24-16_53_04 1](https://github.com/Marat200118/Space-Travel-Conference/assets/37581663/42690afc-f877-4f95-8018-8fc13e8ae2c7)
+
+
 ### Schedule page
-<img src="https://github.com/Marat200118/Space-Travel-Conference/assets/37581663/86a9ca3a-84d3-42bc-95bb-2d0b8a68f7df"
+![screencapture-marats-samigullins-creative-conference-schedule-2023-12-24-16_52_51](https://github.com/Marat200118/Space-Travel-Conference/assets/37581663/f7ec275c-98f2-43e2-b699-5a810a0843f1)
+
+
+### Talk Detail page
+![screencapture-marats-samigullins-creative-conference-talks-9-2023-12-24-16_52_33](https://github.com/Marat200118/Space-Travel-Conference/assets/37581663/5de62670-b965-4d8f-828e-0205180d509a)
 
 
 ### Talk highlight
